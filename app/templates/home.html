@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+
+{% block heat_title %}
+    Home
+{% endblock heat_title %}
+    
+
+{% block content %}
+    <div class="border rounded-4 p-5 shadow">
+        <h2>Home</h2>
+        <hr>
+        <a href="{% url 'medical-care-profile-create' %}">Become a carer</a>
+        <!-- <a href="#">I need a carer</a> -->
+    </div>
+{% endblock content %}

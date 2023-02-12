@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+{{object}}
+{% endblock head_title %}
+
+
+{% block content %}
+<h1 class="text-center">{{object}}</h1>
+<hr>
+<br>
+<div class="col-lg-8 mx-auto border p-5 rounded-4 shadow">
+    <div class="border px-3 py-5 rounded-4 shadow">
+        <span>Experience</span>
+        {{object.exp}} years
+    </div>
+    <br>
+    <div class="border px-3 py-5 rounded-4 shadow">
+        <span>Qualifications</span>
+        {% for q in object.qualifications.all %}
+        <li class="px-3">{{q.name}}</li>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="border px-3 py-5 rounded-4 shadow">
+        <span>Skills</span>
+        {% for s in object.skills.all %}
+        <li class="px-3">{{s.name}}</li>
+        {% endfor %}
+    </div>
+    <br>
+    <div class="text-end my-3">
+        <a class="btn btn-outline-dark px-5"
+            href="{% url 'medical-care-profile-update' object.slug %}">Edit</a>
+    </div>
+</div>
+
+{% endblock content %}
