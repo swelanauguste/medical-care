@@ -8,7 +8,7 @@ from django.utils.text import slugify
 
 class User(AbstractUser):
     is_buyer = models.BooleanField(default=False)
-    is_seller = models.BooleanField(default=False)
+    is_seller = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 
 
@@ -19,7 +19,7 @@ class Location(models.Model):
         ordering = ("location_name",)
 
     def __str__(self):
-        return self.location_name
+        return self.location_name.title()
 
 
 class Profile(models.Model):
@@ -61,4 +61,4 @@ class Profile(models.Model):
     def __str__(self) -> str:
         if self.first_name and self.last_name:
             return f"{self.first_name} {self.last_name}"
-        return self.user.username
+        return self.user.email

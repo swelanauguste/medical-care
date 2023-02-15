@@ -11,6 +11,7 @@ from .models import Profile, User
 def profile_redirect(request):
     return redirect("profile", slug=request.user.profile.slug)
 
+
 class HomeView(TemplateView):
     template_name = "home.html"
 
@@ -19,4 +20,3 @@ class ProfileUpdateView(SuccessMessageMixin, UpdateView):
     model = Profile
     form_class = ProfileUpdateForm
     success_message = "Updated"
-    

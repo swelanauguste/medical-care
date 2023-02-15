@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block head_title %}
+Jobs
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="container py-5">
+    <div class="py-1">
+        <a href="{% url 'medical-care-profile-create' %}">Become a carer</a>
+
+    </div>
+    <div class="col-lg-4 col-md-8 col-sm-12 mx-auto">
+        <input class="form-control rounded-pill"
+            type="text"
+            autofocus>
+    </div>
+    <div class="container py-5">
+        <div class="card col-lg-8 col-md-6 col-sm-12 mx-auto">
+            <ul class="list-group list-group-flush">
+                {% for work in object_list %}
+                <li class="list-group-item py-3">
+                    <a class="text-decoration-none fs-5 text-dark my-3"
+                        href="">{{work.name}}</a>
+                    <br>
+                    <br>
+                    <p class="d-flex text-muted"
+                        style="font-size: 14px;">
+                        <span
+                            title="skill level">{{work.skill_level|upper}}</span>
+                        | <span
+                            title="hourly rate">${{work.hourly_rate}}</span>
+                        | <span title="created">
+                            {{work.created_at|naturaltime}}</span>
+                    </p>
+                    <p style="font-size: 14px;">{{work.description}}</p>
+                    <p class="d-flex">
+                        {% for tag in work.tags.all %}
+                        <button
+                            class="btn btn-sm btn-secondary mx-1 rounded-pill">{{tag|title}}</button>
+                        {% endfor %}
+                    </p>
+                    <a title="more details"
+                        class="text-decoration-none text-dark mx-3"
+                        href="#"><span class="material-symbols-outlined">
+                            read_more
+                        </span>
+                    </a>
+                    <a href="">
+                        <p class="d-flex text-dark fw-bold float-end"><span
+                                class="material-symbols-outlined">
+                                location_on
+                            </span><span
+                                style="font-size: 14px;">{{work.location.location_name|title}}</span>
+                        </p>
+                    </a>
+                </li>
+                {% empty %}
+                <p class="text-center pb-3 pt-4">No works</p>
+                {% endfor %}
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

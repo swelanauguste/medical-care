@@ -5,7 +5,8 @@ from django.urls import include, path
 from users.views import HomeView
 
 urlpatterns = [
-    path("", HomeView.as_view(), name="home"),
+    path("", include("work.urls")),
+    path("home/", HomeView.as_view(), name="home"),
     path("admin/", admin.site.urls),
     path("profiles/", include("users.urls")),
     path("med_care/", include("med_care.urls")),

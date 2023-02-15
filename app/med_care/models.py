@@ -5,8 +5,7 @@ from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 
-Carer = settings.AUTH_USER_MODEL
-
+from users.models import User
 
 class Qualification(models.Model):
     name = models.CharField(max_length=100)
@@ -30,23 +29,22 @@ class Skill(models.Model):
 
 class MedicalCareProfile(models.Model):
     carer = models.OneToOneField(
-        Carer, on_delete=models.CASCADE, related_name="carer_profile"
+        User, on_delete=models.CASCADE, related_name="carer_profile"
     )
     slug = models.SlugField(max_length=255, unique=True, blank=True)
     uid = models.UUIDField(
         default=uuid.uuid4, editable=False, blank=True, null=True, unique=True
     )
     qualifications = models.ManyToManyField(
-        Qualification, related_name="qualification_list"
+        Qualification, related_name="qualification_list", blank=True
     )
-    skills = models.ManyToManyField(Skill, related_name="skill_list")
+    skills = models.ManyToManyField(Skill, related_name="skill_list", blank=True)
     exp = models.CharField(
         "experience",
         max_length=255,
         blank=True,
         help_text="Number of years of experience",
     )
-    
 
     def save(self, *args, **kwargs):
         if not self.slug:

@@ -1,6 +1,10 @@
 import os
 from pathlib import Path
+from dotenv import dotenv_values
+from dotenv import load_dotenv
 
+load_dotenv()
+config = dotenv_values(".env")
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -138,8 +142,17 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 #######################
 
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = "emails"
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = "emails"
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_HOST = "mail.govt.lc"
+EMAIL_HOST_USER = config['EMAIL']
+EMAIL_HOST_PASSWORD = config['PASS']
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 
 ######################
