@@ -23,5 +23,5 @@ class Command(BaseCommand):
                 hourly_rate=random.randint(7, 15),
                 location=Location.objects.get(pk=random.randint(1, 12)),
             )
-            self.stdout.write(self.style.SUCCESS(f"{title} added"))
+            self.stdout.write(self.style.SUCCESS("jobs added"))
             
