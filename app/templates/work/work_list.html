@@ -19,15 +19,18 @@ Jobs
     {% endif %}
     {% endif %}
     <div class="col-lg-4 col-md-8 col-sm-12 mx-auto">
-        <input class="form-control rounded-pill"
-            type="text"
-            autofocus>
+        <form action="">
+            <input class="form-control rounded-pill"
+                type="text"
+                name="q"
+                autofocus>
+        </form>
     </div>
     <div class="container py-5">
         <div class="card col-lg-8 col-md-6 col-sm-12 mx-auto">
             <ul class="list-group list-group-flush">
                 {% for work in object_list %}
-                <li class="list-group-item py-3">
+                <li class="list-group-item p-5">
                     <a class="text-decoration-none fs-5 text-dark my-3"
                         href="{{work.get_absolute_url}}">{{work.title}}</a>
                     <br>
@@ -42,12 +45,6 @@ Jobs
                             {{work.created_at|naturaltime}}</span>
                     </p>
                     <p style="font-size: 14px;">{{work.description}}</p>
-                    <p class="d-flex">
-                        {% for tag in work.tags.all %}
-                        <button
-                            class="btn btn-sm btn-secondary mx-1 rounded-pill">{{tag|title}}</button>
-                        {% endfor %}
-                    </p>
                     <a title="more details"
                         class="text-decoration-none text-dark mx-3"
                         href="#"><span class="material-symbols-outlined">

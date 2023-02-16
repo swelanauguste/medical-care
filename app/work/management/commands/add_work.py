@@ -8,13 +8,12 @@ from users.models import Location, User
 from ...models import SkillLevel, Work
 
 
-
 class Command(BaseCommand):
     help = "Add faker data to the database"
 
     def handle(self, *args, **kwargs):
         fake = Faker()
-        for _ in range(20):
+        for _ in range(200):
             Work.objects.get_or_create(
                 title=fake.company(),
                 description=fake.paragraph(nb_sentences=7),
@@ -23,5 +22,4 @@ class Command(BaseCommand):
                 hourly_rate=random.randint(7, 15),
                 location=Location.objects.get(pk=random.randint(1, 12)),
             )
-            self.stdout.write(self.style.SUCCESS("jobs added"))
-            
+        self.stdout.write(self.style.SUCCESS("jobs added"))

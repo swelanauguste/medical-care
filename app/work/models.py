@@ -37,6 +37,10 @@ class Work(models.Model):
     tags = models.ManyToManyField(Tag)
     # likes = models.BooleanField(default=False)
     # dislikes = models.BooleanField(default=False)
+    
+    class Meta:
+        verbose_name_plural = 'work'
+        ordering = ['title']
 
     def get_absolute_url(self):
         return reverse("work-detail", kwargs={"pk": self.pk})
