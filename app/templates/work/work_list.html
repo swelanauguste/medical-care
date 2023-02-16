@@ -29,7 +29,7 @@ Jobs
                 {% for work in object_list %}
                 <li class="list-group-item py-3">
                     <a class="text-decoration-none fs-5 text-dark my-3"
-                        href="">{{work.name}}</a>
+                        href="{{work.get_absolute_url}}">{{work.title}}</a>
                     <br>
                     <br>
                     <p class="d-flex text-muted"

@@ -21,12 +21,20 @@
 
     <link rel="stylesheet"
         href="{% static 'css/styles.css' %}">
+    <link rel="shortcut icon"
+        href="{% static 'images/favicon.ico' %}"
+        type="image/x-icon">
+    <style>
+        .list-group-item:hover {
+            background: #dddddd;
+        }
+    </style>
 </head>
 
 <body>
     {% include "navbar.html" %}
     {% include "messages.html" %}
-   
+
     <div class="container py-5">
         {% block content %}
 

@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from users.models import Location
+from django.urls import reverse
 
 Seller = settings.AUTH_USER_MODEL
 
@@ -36,6 +37,9 @@ class Work(models.Model):
     tags = models.ManyToManyField(Tag)
     # likes = models.BooleanField(default=False)
     # dislikes = models.BooleanField(default=False)
+
+    def get_absolute_url(self):
+        return reverse("work-detail", kwargs={"pk": self.pk})
 
     def __str__(self):
         return self.title
