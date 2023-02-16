@@ -20,7 +20,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-CSRF_TRUSTED_ORIGINS = ["https://8ea1-69-80-12-37.ngrok.io"]
+CSRF_TRUSTED_ORIGINS = ["https://anya.loca.lt"]
 
 # Application definition
 
