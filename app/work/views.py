@@ -1,12 +1,13 @@
-from django.views.generic import ListView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
+from django.views.generic import DetailView, ListView
 
 from .models import Work
 
 
-class WorkListView(ListView):
+class WorkListView(LoginRequiredMixin, ListView):
     model = Work
-    
+
     def get_queryset(self):
         query = self.request.GET.get("q")
         if query:
@@ -19,7 +20,7 @@ class WorkListView(ListView):
             ).distinct()
         else:
             return Work.objects.all()
-    
-    
+
+
 class WorkDetailView(DetailView):
     model = Work
