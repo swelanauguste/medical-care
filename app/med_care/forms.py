@@ -1,5 +1,5 @@
 from django import forms
-from django.forms import CheckboxSelectMultiple, Select, TextInput
+from django.forms import CheckboxSelectMultiple, NumberInput, Select, TextInput
 
 from .models import MedicalCareProfile
 
@@ -12,9 +12,16 @@ class MedicalCareProfileCreateForm(forms.ModelForm):
             "carer": Select(
                 attrs={"class": "visually-hidden-focusable"},
             ),
-            "exp": TextInput(attrs={"class": "rounded-pill shadow"}),
             "qualifications": CheckboxSelectMultiple(),
             "skills": CheckboxSelectMultiple(),
+            "exp": TextInput(
+                attrs={
+                    "class": "rounded-pill shadow",
+                    "type": "text",
+                    "inputmode": "numeric",
+                    "pattern": "[0-9]",
+                }
+            ),
         }
         labels = {
             "carer": "",
@@ -27,7 +34,14 @@ class MedicalCareProfileUpdateForm(forms.ModelForm):
         fields = "__all__"
         exclude = ["carer", "uid", "slug"]
         widgets = {
-            "exp": TextInput(attrs={"class": "rounded-pill shadow"}),
+            "exp": TextInput(
+                attrs={
+                    "class": "rounded-pill shadow",
+                    "inputmode": "numeric",
+                    "type": "text",
+                    "pattern": "[0-9]+",
+                }
+            ),
             "qualifications": CheckboxSelectMultiple(),
             "skills": CheckboxSelectMultiple(),
         }

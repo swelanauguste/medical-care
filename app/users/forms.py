@@ -17,16 +17,30 @@ class ProfileUpdateForm(forms.ModelForm):
         exclude = ["user", "uid", "slug"]
         widgets = {
             "bio": Textarea(attrs={"cols": 80, "rows": 4, "class": "rounded-4 shadow"}),
-            "dob": DateInput(attrs={"class": "rounded-3 shadow", "type": "date"}),
-            "first_name": TextInput(attrs={"class": "rounded-3 shadow"}),
-            "last_name": TextInput(attrs={"class": "rounded-3 shadow"}),
-            "middle_name": TextInput(attrs={"class": "rounded-3 shadow"}),
+            "dob": DateInput(attrs={"class": "rounded-pill shadow", "type": "date"}),
+            "first_name": TextInput(attrs={"class": "rounded-pill shadow"}),
+            "last_name": TextInput(attrs={"class": "rounded-pill shadow"}),
+            "middle_name": TextInput(attrs={"class": "rounded-pill shadow"}),
             "gender": RadioSelect(),
-            "location": Select(attrs={"class": "rounded-3 shadow"}),
+            "location": Select(attrs={"class": "rounded-pill shadow"}),
             "phone": TextInput(
-                attrs={"class": "rounded-3 shadow", "placeholder": "758-489-3909"}
+                attrs={
+                    "class": "rounded-pill shadow",
+                    "inputmode": "numeric",
+                    "type": "text",
+                    "pattern": "+[0-9]",
+                    "placeholder": "758-489-3909"
+                }
             ),
-            "phone1": TextInput(attrs={"class": "rounded-3 shadow"}),
+            "phone1": TextInput(
+                attrs={
+                    "class": "rounded-pill shadow",
+                    "inputmode": "numeric",
+                    "type": "text",
+                    "pattern": "+[0-9]",
+                    "placeholder": "758-489-3909"
+                }
+            ),
         }
 
         # labels = {
