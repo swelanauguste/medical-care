@@ -1,5 +1,5 @@
 
 Faker==16.8.1
 black==23.1.0
-python-dotenv==0.21.1
+
 -r production.txt
