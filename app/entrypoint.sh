@@ -11,16 +11,16 @@
 #     echo "PostgreSQL started"
 # fi
 
-python manage.py migrate
-python manage.py flush --noinput
-python manage.py createsuperuser --username king --email no-reply@mail.com --noinput
+# python manage.py migrate
+# python manage.py flush --noinput
+# python manage.py createsuperuser --username king --email no-reply@mail.com --noinput
 
-python manage.py add_qualifications
-python manage.py add_skills
-python manage.py add_skill_level
-python manage.py add_tags
-python manage.py add_locations
-python manage.py add_work
+# python manage.py add_qualifications
+# python manage.py add_skills
+# python manage.py add_skill_level
+# python manage.py add_tags
+# python manage.py add_locations
+# python manage.py add_work
 
 
 python manage.py collectstatic --noinput

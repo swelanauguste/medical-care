@@ -6,6 +6,11 @@ body {
     font-family: 'Montserrat', sans-serif;
 }
 
+.hover-list:hover {
+    background: #88ebf4;
+    border-color: #88ebf4;
+}
+
 .hide-me {
     -webkit-animation: cssAnimation 5s forwards;
     animation: cssAnimation 5s forwards;

@@ -27,40 +27,40 @@ Jobs
         </form>
     </div>
     <div class="container py-5">
-        <div class="card col-lg-8 col-md-6 col-sm-12 mx-auto">
+        <div class=" col-lg-6 col-md-4 col-sm-12 mx-auto">
             <ul class="list-group list-group-flush">
                 {% for work in object_list %}
-                <li class="list-group-item p-5">
-                    <a class="text-decoration-none fs-5 text-dark my-3"
-                        href="{{work.get_absolute_url}}">{{work.title}}</a>
-                    <br>
-                    <br>
-                    <p class="d-flex text-muted"
-                        style="font-size: 14px;">
-                        <span
-                            title="skill level">{{work.skill_level|upper}}</span>
-                        | <span
-                            title="hourly rate">${{work.hourly_rate}}</span>
-                        | <span title="created">
-                            {{work.created_at|naturaltime}}</span>
-                    </p>
-                    <p style="font-size: 14px;">{{work.description}}</p>
-                    <a href="">
-                        <p class="d-flex text-dark fw-bold float-end"><span
-                                class="material-symbols-outlined">
-                                location_on
-                            </span><span
-                                style="font-size: 14px;">{{work.location.location_name|title}}</span>
+                <a class="text-decoration-none fs-5 text-dark my-1 hover-list"
+                    href="{{work.get_absolute_url}}">
+                    <li
+                        class="list-group-item pt-4 px-5 hover-list rounded-4 shadow">
+                        <p>{{work.title}}</p>
+                        <p class="d-flex text-muted"
+                            style="font-size: 14px;">
+                            <span
+                                title="skill level">{{work.skill_level|upper}}</span>
+                            | <span
+                                title="hourly rate">${{work.hourly_rate}}</span>
+                            | <span title="created">
+                                {{work.created_at|naturaltime}}</span>
                         </p>
-                    </a>
+                        <p style="font-size: 14px;">{{work.description}}</p>
+                        <a href="?q={{work.location.location_name}}">
+                            <p class="d-flex text-dark fw-bold float-end"><span
+                                    class="material-symbols-outlined text-muted">
+                                    location_on
+                                </span>
+                                <span class="text-muted"
+                                    style="font-size: 14px;">{{work.location.location_name|title}}</span>
+                            </p>
+                        </a>
+                </a>
                 </li>
                 {% empty %}
                 <p class="text-center pb-3 pt-4">No Jobs</p>
                 {% endfor %}
             </ul>
-
         </div>
     </div>
 </div>
-
 {% endblock content %}
