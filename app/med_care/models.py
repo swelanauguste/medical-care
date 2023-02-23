@@ -42,7 +42,6 @@ class MedicalCareProfile(models.Model):
     exp = models.CharField(
         "experience",
         max_length=255,
-        blank=True,
         help_text="Number of years of experience",
     )
 
