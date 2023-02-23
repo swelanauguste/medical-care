@@ -12,6 +12,7 @@
 # fi
 
 python manage.py migrate
+python manage.py flush --on-input
 python manage.py createsuperuser --username king --email no-reply@mail.com --no-input
 
 python manage.py add_qualifications
