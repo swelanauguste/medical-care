@@ -12,8 +12,8 @@
 # fi
 
 python manage.py migrate
-python manage.py flush --on-input
-python manage.py createsuperuser --username king --email no-reply@mail.com --no-input
+python manage.py flush --oninput
+python manage.py createsuperuser --username king --email no-reply@mail.com --noinput
 
 python manage.py add_qualifications
 python manage.py add_skills
@@ -23,6 +23,6 @@ python manage.py add_locations
 python manage.py add_work
 
 
-python manage.py collectstatic --no-input
+python manage.py collectstatic --noinput
 
 exec "$@"
