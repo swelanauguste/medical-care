@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}
+{{request.user.profile}}
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="col-lg-8 mx-auto p-5 rounded-4 shadow">
+    <form action=""
+        method="post">
+        {% csrf_token %}
+        {{form|crispy}}
+        <h1 class="text-center">{{job}}</h1>
+        <hr>
+        <div class="my-3 text-center">
+            <button class="btn btn-outline-dark shadow rounded-pill px-5"
+                type="submit">Submit application</button>
+        </div>
+    </form>
+</div>
+
+{% endblock content %}

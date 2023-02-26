@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load humanize %}
+
+{% block head_title %}
+Applications
+{% endblock head_title %}
+
+{% block content %}
+<div class="container py-5">
+    <div class="container col-lg-6 mx-auto shadow p-5 rounded-4">
+        <h2 class="text-center">Applications</h2>
+        <hr>
+        <br>
+        {% for app in object_list %}
+        <a style="cursor: pointer;" class="text-decoration-none text-dark"
+            href="{% url 'application-detail' app.pk %}">{{app.job}}</a>
+            <p class="text-end text-muted small">{{app.created_at|naturaltime}}</p>
+        <hr>
+        {% empty %}
+        <p class="text-center py-5">No Applications</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock content %}

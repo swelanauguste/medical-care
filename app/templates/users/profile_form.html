@@ -10,6 +10,14 @@
 <h1 class="text-center">{{request.user.profile}}</h1>
 <hr>
 <br>
+{% if request.user.is_authenticated %}
+{% if request.user.carer_profile %}
+{% else %}
+<div class="py-1">
+    <a href="{% url 'medical-care-profile-create' %}">Become a carer</a>
+</div>
+{% endif %}
+{% endif %}
 <div class="col-lg-8 mx-auto border p-5 rounded-4 shadow">
     <form action=""
         method="post">
@@ -24,7 +32,7 @@
             </div>
         </div>
         <div class="row">
-            
+
             <div class="col-lg-6 mb-2">
                 {{ form.middle_name|as_crispy_field }}
             </div>

@@ -8,21 +8,20 @@
 {% endblock head_title %}
 
 {% block content %}
+<a title="go back" class="text-decoration-none text-dark"
+    href="javascript:history.back()"><span class="material-symbols-outlined fs-1">
+        arrow_back
+    </span></a>
 <div class="col-lg-6 mx-auto border rounded-4 shadow p-5">
     <h2>{{object}}</h2>
     <hr>
     <p class="d-flex text-muted"
         style="font-size: 14px;">
-        <span title="skill level">{{object.skill_level|upper}}</span>
-        | <span title="hourly rate">${{object.hourly_rate}}</span>
+        <span title="skill level">{{object.job.skill_level|upper}}</span>
+        | <span title="hourly rate">${{object.job.hourly_rate}}</span>
         | <span title="created">
             {{object.created_at|naturaltime}}</span>
     </p>
-    <p style="font-size: 14px;">{{object.description}}</p>
-    <hr><br>
-    <div class="text-end">
-        <a class="btn px-5 btn-outline-dark rounded-pill"
-            href="{% url 'apply' object.pk %}">Apply now</a>
-    </div>
+    <p style="font-size: 14px;">{{object.job.description}}</p>
 </div>
 {% endblock content %}
