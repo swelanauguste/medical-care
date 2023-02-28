@@ -13,7 +13,7 @@ SECRET_KEY = "django-insecure-k1)rg6pf98j5mf4#iyuug727h^*2j%ygar=*wq*y8t4_@e%k+p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["anya.kingship.info", "*"]
+ALLOWED_HOSTS = ["anya.kingship.info"]
 
 CSRF_TRUSTED_ORIGINS = ["https://anya.kingship.info"]
 
@@ -139,19 +139,19 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 # Email_settings
 #######################
 
-# EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-EMAIL_FILE_PATH = "emails"
+# # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+# EMAIL_FILE_PATH = "emails"
 
 
-# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-# EMAIL_HOST = "smtp.gmail.com"
-# # EMAIL_HOST = "mail.govt.lc"
-# EMAIL_HOST_USER = os.environ.get("EMAIL")
-# EMAIL_HOST_PASSWORD = os.environ.get("PASS")
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_USE_SSL = False
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+# EMAIL_HOST = "mail.govt.lc"
+EMAIL_HOST_USER = os.environ.get("EMAIL")
+EMAIL_HOST_PASSWORD = os.environ.get("PASS")
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
 
 ######################
 # Authentication settings for allauth
