@@ -13,7 +13,7 @@ SECRET_KEY = "django-insecure-k1)rg6pf98j5mf4#iyuug727h^*2j%ygar=*wq*y8t4_@e%k+p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["anya.kingship.info"]
+ALLOWED_HOSTS = ["anya.kingship.info", "*"]
 
 CSRF_TRUSTED_ORIGINS = ["https://anya.kingship.info"]
 
@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     "med_care",
     "work",
     "applications",
+    "request",
 ]
 
 MIDDLEWARE = [
@@ -46,6 +47,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "request.middleware.RequestMiddleware",
 ]
 
 ROOT_URLCONF = "cf.urls"
@@ -138,18 +140,18 @@ CRISPY_TEMPLATE_PACK = "bootstrap4"
 #######################
 
 # EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
-# EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
-# EMAIL_FILE_PATH = "emails"
+EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
+EMAIL_FILE_PATH = "emails"
 
 
-EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
-EMAIL_HOST = "smtp.gmail.com"
-# EMAIL_HOST = "mail.govt.lc"
-EMAIL_HOST_USER = os.environ.get("EMAIL")
-EMAIL_HOST_PASSWORD = os.environ.get("PASS")
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_USE_SSL = False
+# EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+# EMAIL_HOST = "smtp.gmail.com"
+# # EMAIL_HOST = "mail.govt.lc"
+# EMAIL_HOST_USER = os.environ.get("EMAIL")
+# EMAIL_HOST_PASSWORD = os.environ.get("PASS")
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_USE_SSL = False
 
 ######################
 # Authentication settings for allauth
@@ -175,3 +177,19 @@ ACCOUNT_LOGOUT_REDIRECT_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "profile-redirect"
 LOGIN_URL = "/accounts/login/"
 LOGOUT_URL = "/accounts/login/"
+
+
+REQUEST_IGNORE_PATHS = (
+    r'^admin/',
+)
+
+REQUEST_PLUGINS = (
+    'request.plugins.TrafficInformation',
+    'request.plugins.LatestRequests',
+    'request.plugins.TopPaths',
+    'request.plugins.TopErrorPaths',
+    'request.plugins.TopReferrers',
+    'request.plugins.TopSearchPhrases',
+    'request.plugins.TopBrowsers',
+    'request.plugins.ActiveUsers'
+)
