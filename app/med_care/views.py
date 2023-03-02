@@ -1,11 +1,20 @@
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, TemplateView, UpdateView
-from django.views.generic.edit import FormMixin
+from django.views.generic import (
+    CreateView,
+    DetailView,
+    ListView,
+    TemplateView,
+    UpdateView,
+)
 
 from .forms import MedicalCareProfileCreateForm, MedicalCareProfileUpdateForm
 from .models import MedicalCareProfile
+
+
+class MedicalCareProfileListView(ListView):
+    model = MedicalCareProfile
 
 
 class MedicalCareProfileCreateView(SuccessMessageMixin, CreateView):
@@ -42,6 +51,10 @@ class MedicalCareProfileCreateView(SuccessMessageMixin, CreateView):
     # def form_valid(self, form):
     #     form.instance.carer = self.request.user
     #     return super().form_valid(form)
+
+
+class MedicalCareProfileDetailView(DetailView):
+    model = MedicalCareProfile
 
 
 class MedicalCareProfileUpdateView(SuccessMessageMixin, UpdateView):

@@ -15,8 +15,11 @@
         method="post">
         {% csrf_token %}
         <div class="row">
-            <div class="col-lg-4 mb-2">
-                {{ form.carer|as_crispy_field }}
+            <div class="col-lg-6 mx-auto mb-2">
+                {{ form.exp|as_crispy_field }}
+            </div>
+            <div class="col-lg-6 mx-automb-2">
+                {{ form.hourly_rate|as_crispy_field }}
             </div>
         </div>
         <div class="row">

@@ -1,27 +1,35 @@
-<div class="row shadow">
+<nav class="row border sticky-top bg-white">
     <div class="col">
         <div class="d-flex py-lg-4 px-lg-5 p-3 bg-white">
-            <a class="text-decoration-none text-dark me-2"
+            <a class="text-decoration-none text-dark fw-bold me-4"
                 href="/">Anya</a>
+            {% if request.user.carer_profile %}
+            <a class="text-decoration-none text-dark me-4"
+                href="/">Jobs</a>
+            {% endif %}
+            <a class="text-decoration-none text-dark me-4"
+                href="{% url 'medical-care-profile-list' %}">Carers</a>
         </div>
     </div>
     <div class="col">
         <div class="d-flex py-lg-4 px-lg-5 p-3 bg-white justify-content-end">
             {% if request.user.is_authenticated %}
             <div class="dropdown me-2">
-                <button class="bg-transparent border-0 small p-0 m-0"
+                <a class="text-decoration-none text-dark bg-transparent border-0 small p-0 m-0"
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
                     {{request.user.profile}}
-                </button>
+                </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item"
-                            href="{{request.user.profile.get_absolute_url}}">User Profile</a>
+                            href="{{request.user.profile.get_absolute_url}}">User
+                            Profile</a>
                     </li>
                     {% if request.user.carer_profile %}
                     <li><a class="dropdown-item"
-                            href="{{ request.user.carer_profile.get_absolute_url }}">Medical Profile</a>
+                            href="{{ request.user.carer_profile.get_absolute_url }}">Medical
+                            Profile</a>
                     </li>
                     <li><a class="dropdown-item"
                             href="{% url 'application-list' %}">Applications</a>
@@ -32,15 +40,10 @@
                             href="{% url 'account_logout' %}">Logout</a></li>
                 </ul>
             </div>
-            {% else %}
-            <a class="text-decoration-none text-dark me-2"
-                href="{% url 'account_login' %}">Login</a>
-            <a class="text-decoration-none text-dark me-2"
-                href="{% url 'account_signup' %}">Register</a>
             {% endif %}
         </div>
     </div>
-</div>
+</nav>
 <!-- <a style="position: fixed; top:2%; right:1%; z-index:1;"
     class="text-decoration-none fs-1 rounded-circle bg-dark text-white p-1"
     href="">{{request.user.profile.first_name.0}}{{request.user.profile.last_name.0}}</a> -->

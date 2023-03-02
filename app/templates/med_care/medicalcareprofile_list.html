@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load request_tag %}
+
+{% load humanize %}
+
+{% block head_title %}
+Jobs
+{% endblock head_title %}
+
+
+{% block content %}
+<div class="container py-5">
+    <div class="col-lg-4 col-md-8 col-sm-12 mx-auto">
+        <form action="">
+            <input class="form-control rounded-pill"
+                type="text"
+                name="q"
+                autofocus>
+        </form>
+    </div>
+    <div class="container py-5">
+        <div class=" col-lg-6 col-md-4 col-sm-12 mx-auto">
+            <ul class="list-group list-group-flush">
+                {% for carer in object_list %}
+                <a class="text-decoration-none fs-5 text-dark my-1"
+                    href="{{carer.get_absolute_url}}">
+                    <li
+                        class="list-group-item pt-4 px-5 hover-grey rounded-4 shadow">
+                        <h3>{{carer}}</h3>
+                        <span class="text-end">
+                            <p class="px-3 d-flex text-muted"
+                                style="font-size: 14px;">
+                                <span
+                                    title="experience">{{carer.exp|upper}}
+                                    yrs </span>
+                                | <span
+                                    title="hourly rate">${{carer.hourly_rate|intcomma}}
+                                    hr </span>
+                            </p>
+                        </span>
+                        <hr>
+                        <div class="container">
+
+                            <p style="font-size: 14px;">
+                                {{carer.carer.profile.bio}}
+                            </p>
+                        </div>
+                        <p style="font-size: 14px;"
+                            class="small border border-dark p-4 rounded-4"
+                            title="skills and qualifications">
+                            <span>Skills</span>
+                            <br>
+                            <span title="skills" class="px-3">
+                                {% for skill in carer.skills.all|slice:":3" %}
+                                {{skill}}|
+                                {% endfor %}
+                                ...
+                            </span>
+                            <br><br>
+                            <span>Qualifications</span>
+                            <br>
+                            <span  title="qualifications" class="px-3">
+                                {% for qual in carer.qualifications.all|slice:":3" %}
+                                {{qual}}|
+                                {% endfor %}
+                                ...
+                            </span>
+                        </p>
+                        <a
+                            href="?q={{carer.carer.profile.location.location_name}}">
+                            <p class="d-flex text-dark fw-bold float-end"><span
+                                    class="material-symbols-outlined text-muted">
+                                    location_on
+                                </span>
+                                <span class="text-muted"
+                                    style="font-size: 14px;">{{carer.carer.profile.location.location_name|title}}</span>
+                            </p>
+                        </a>
+                </a>
+                </li>
+                {% empty %}
+                <p class="text-center pb-3 pt-4">No Carers</p>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock content %}

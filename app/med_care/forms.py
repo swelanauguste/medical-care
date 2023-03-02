@@ -7,7 +7,7 @@ from .models import MedicalCareProfile
 class MedicalCareProfileCreateForm(forms.ModelForm):
     class Meta:
         model = MedicalCareProfile
-        fields = ["carer", "exp", "qualifications", "skills"]
+        fields = ["carer", "exp", "qualifications", "skills", "hourly_rate"]
         widgets = {
             "carer": Select(
                 attrs={"class": "visually-hidden-focusable"},
@@ -20,6 +20,11 @@ class MedicalCareProfileCreateForm(forms.ModelForm):
                     "type": "text",
                     "inputmode": "numeric",
                     "pattern": "[0-9]",
+                }
+            ),
+            "hourly_rate": TextInput(
+                attrs={
+                    "class": "rounded-pill shadow",
                 }
             ),
         }
@@ -44,6 +49,11 @@ class MedicalCareProfileUpdateForm(forms.ModelForm):
             ),
             "qualifications": CheckboxSelectMultiple(),
             "skills": CheckboxSelectMultiple(),
+            "hourly_rate": TextInput(
+                attrs={
+                    "class": "rounded-pill shadow",
+                }
+            ),
         }
 
         labels = {

@@ -32,7 +32,7 @@ Jobs
                             <span
                                 title="skill level">{{work.skill_level|upper}}</span>
                             | <span
-                                title="hourly rate">${{work.hourly_rate}}</span>
+                                title="hourly rate">${{work.hourly_rate|intcomma}} hr</span>
                             | <span title="created">
                                 {{work.created_at|naturaltime}}</span>
                         </p>

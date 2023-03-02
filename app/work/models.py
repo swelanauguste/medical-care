@@ -25,7 +25,7 @@ class Work(models.Model):
     description = models.TextField(blank=True)
     posted_by = models.ForeignKey(Seller, on_delete=models.CASCADE)
     skill_level = models.ForeignKey(SkillLevel, on_delete=models.SET_DEFAULT, default=2)
-    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    hourly_rate = models.DecimalField(max_digits=10, decimal_places=2, default=5)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     location = models.ForeignKey(

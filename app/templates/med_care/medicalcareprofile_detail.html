@@ -10,23 +10,31 @@
 <h1 class="text-center">{{object}}</h1>
 <hr>
 <br>
-<div class="col-lg-8 mx-auto border p-5 rounded-4 shadow">
-    <div class="border px-3 py-5 rounded-4 shadow">
-        <span>Experience</span>
-        {{object.exp}} years
+<div class="col-lg-4 mx-auto border p-5 rounded-4 shadow">
+    <div class="row">
+        <div class="col-5 mx-auto shadow rounded-4 p-4 text-center">
+            <span>Experience</span><hr>
+            <span>{{object.exp}} years</span>
+        </div>
+        <div class="col-5 mx-auto shadow rounded-4 p-4 text-center">
+            <span>Hourly rate</span><hr>
+            <span>${{object.hourly_rate}}</span>
+        </div>
     </div>
     <br>
-    <div class="border px-3 py-5 rounded-4 shadow">
-        <span>Qualifications</span>
+    <div class="border px-3 py-5 rounded-4 shadow text-center">
+        <span class="fs-4">Qualifications</span>
+        <hr>
         {% for q in object.qualifications.all %}
-        <li class="px-3">{{q.name}}</li>
+        <li class="list-unstyled">{{q.name}}</li>
         {% endfor %}
     </div>
     <br>
-    <div class="border px-3 py-5 rounded-4 shadow">
-        <span>Skills</span>
+    <div class="border px-3 py-5 rounded-4 shadow text-center">
+        <span class="fs-4">Skills</span>
+        <hr>
         {% for s in object.skills.all %}
-        <li class="px-3">{{s.name}}</li>
+        <li class="list-unstyled">{{s.name}}</li>
         {% endfor %}
     </div>
     <br>
