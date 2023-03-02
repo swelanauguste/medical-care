@@ -64,8 +64,8 @@ class Profile(models.Model):
     )
     postal_code = models.CharField(max_length=10, null=True, blank=True)
     dob = models.DateField("DOB", blank=True, null=True)
-    phone = models.PositiveIntegerField(null=True, default='+1')
-    phone1 = models.PositiveIntegerField(blank=True)
+    phone = models.TextField(null=True, default='+1')
+    phone1 = models.TextField(blank=True)
     bio = models.TextField(blank=True)
 
     def save(self, *args, **kwargs):
