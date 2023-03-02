@@ -10,6 +10,13 @@ body {
     background: #88ebf4;
     border-color: #88ebf4;
 }
+.hover-grey:hover {
+    background: #d9dada;
+}
+
+nav a:hover {
+    text-decoration: underline!important;
+}
 
 .hide-me {
     -webkit-animation: cssAnimation 5s forwards;
