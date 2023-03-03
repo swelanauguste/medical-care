@@ -11,7 +11,7 @@ from django.views.generic import (
 
 from .forms import MedicalCareProfileCreateForm, MedicalCareProfileUpdateForm
 from .models import MedicalCareProfile
-
+from users.models import User
 
 class MedicalCareProfileListView(ListView):
     model = MedicalCareProfile
@@ -24,33 +24,24 @@ class MedicalCareProfileCreateView(SuccessMessageMixin, CreateView):
     success_message = "Created"
 
     # def get_success_url(self):
-    #     return reverse("clients:client-detail", args=(self.object.slug,))
+    #     return reverse("medical-care-profile-detail", args=(self.object.slug,))
 
     def get_initial(self):
         return {"carer": self.request.user.pk}
 
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+    # def post(self, request, *args, **kwargs):
+    #     self.object = self.get_object()
+    #     form = self.get_form()
+    #     if form.is_valid():
+    #         return self.form_valid(form)
+    #     else:
+    #         return self.form_invalid(form)
 
     def form_valid(self, form):
         form.instance.carer = self.request.user
         form.save()
         return super(MedicalCareProfileCreateView, self).form_valid(form)
 
-    # def get_initial(self, *args, **kwargs):
-    #     initial = super(MedicalCareProfileCreateView, self).get_initial()
-    #     # initial.update({"carer": self.request.user})
-    #     initial = initial.copy()
-    #     initial["carer"] = self.request.user.pk
-    #     return initial
-
-    # def form_valid(self, form):
-    #     form.instance.carer = self.request.user
-    #     return super().form_valid(form)
 
 
 class MedicalCareProfileDetailView(DetailView):
@@ -62,3 +53,4 @@ class MedicalCareProfileUpdateView(SuccessMessageMixin, UpdateView):
     form_class = MedicalCareProfileUpdateForm
     success_message = "Updated"
     template_name_suffix = "_update_form"
+
