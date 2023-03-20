@@ -24,10 +24,12 @@ Jobs
         <div class="col-lg-4 shadow rounded-4 p-0 mx-auto" style="height: min-content;">
                 <div class="p-5 mx-auto text-center">
                     <h4>{{request.user.profile}}</h4>
+                    {% if request.user.profile.image %}
                     <img class="rounded-circle"
-                        height="70"
-                        src="{{request.user.profile.image.url}}"
-                        alt="">
+                    height="70"
+                    src="{{request.user.profile.image.url}}"
+                    alt="">
+                    {% endif %}
                 </div>
                 <div
                     class="bg-secondary text-white py-3  px-5 text-center small rounded-top-0 rounded-4">
