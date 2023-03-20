@@ -10,19 +10,27 @@
 {% block content %}
 <div class="col-lg-6 mx-auto border rounded-4 shadow p-5">
     <h2>{{object}}</h2>
-    <hr>
     <p class="d-flex text-muted"
         style="font-size: 14px;">
-        <span title="skill level">{{object.skill_level|upper}}</span>
-        | <span title="hourly rate">${{object.hourly_rate}}</span>
-        | <span title="created">
+        <span title="skill level" class="btn btn-sm btn-outline-secondary rounded-pill me-1">{{object.skill_level|upper}} </span>
+        <span class="btn btn-sm btn-outline-secondary rounded-pill me-1" title="hourly rate">${{object.hourly_rate}}</span>
+        <span class="btn btn-sm btn-outline-secondary rounded-pill me-1" title="created">
             {{object.created_at|naturaltime}}</span>
     </p>
     <p style="font-size: 14px;">{{object.description}}</p>
-    <hr><br>
     <div class="text-end">
+    <span class="text-muted small">{{object.location}}</span>
+    </div>
+    <div class="text-end mt-3">
         <a class="btn px-5 btn-outline-dark rounded-pill"
             href="{% url 'apply' object.pk %}">Apply now</a>
+    </div>
+    <div class="px-3 small">
+        {% for tag in tags %}
+        <span>{{tag|title}}</span>
+        {% empty %}
+        <span class="btn btn-sm btn-outline-secondary rounded-pill">tags</span>
+        {% endfor %}
     </div>
 </div>
 {% endblock content %}

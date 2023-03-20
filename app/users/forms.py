@@ -1,9 +1,16 @@
 from django import forms
-from django.forms import DateInput, RadioSelect, Select, Textarea, TextInput
+from django.forms import (
+    DateInput,
+    FileInput,
+    ImageField,
+    RadioSelect,
+    Select,
+    Textarea,
+    TextInput,
+)
 
 from .models import Profile, User
-
-
+rounded_pill_shadow = "rounded-4"
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
@@ -16,29 +23,34 @@ class ProfileUpdateForm(forms.ModelForm):
         fields = "__all__"
         exclude = ["user", "uid", "slug"]
         widgets = {
-            "bio": Textarea(attrs={"cols": 80, "rows": 4, "class": "rounded-4 shadow"}),
-            "dob": DateInput(attrs={"class": "rounded-pill shadow", "type": "date"}),
-            "first_name": TextInput(attrs={"class": "rounded-pill shadow"}),
-            "last_name": TextInput(attrs={"class": "rounded-pill shadow"}),
-            "middle_name": TextInput(attrs={"class": "rounded-pill shadow"}),
+            "bio": Textarea(attrs={"cols": 80, "rows": 4, "class": "rounded-3"}),
+            "dob": DateInput(attrs={"class": rounded_pill_shadow, "type": "date"}),
+            "first_name": TextInput(attrs={"class": rounded_pill_shadow}),
+            "last_name": TextInput(attrs={"class": rounded_pill_shadow}),
+            "middle_name": TextInput(attrs={"class": rounded_pill_shadow}),
+            "title": Select(attrs={"class": rounded_pill_shadow}),
+            "address": TextInput(attrs={"class": rounded_pill_shadow}),
+            "address1": TextInput(attrs={"class": rounded_pill_shadow}),
+            "postal_code": TextInput(attrs={"class": rounded_pill_shadow}),
             "gender": RadioSelect(),
-            "location": Select(attrs={"class": "rounded-pill shadow"}),
+            "location": Select(attrs={"class": rounded_pill_shadow}),
+            "image": FileInput(attrs={"class": "form-control rounded-4"}),
             "phone": TextInput(
                 attrs={
-                    "class": "rounded-pill shadow",
+                    "class": rounded_pill_shadow,
                     "inputmode": "numeric",
                     "type": "text",
                     "pattern": "+[0-9]",
-                    "placeholder": "758-489-3909"
+                    "placeholder": "758-489-3909",
                 }
             ),
             "phone1": TextInput(
                 attrs={
-                    "class": "rounded-pill shadow",
+                    "class": "rounded-pill",
                     "inputmode": "numeric",
                     "type": "text",
                     "pattern": "+[0-9]",
-                    "placeholder": "758-489-3909"
+                    "placeholder": "758-489-3909",
                 }
             ),
         }

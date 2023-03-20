@@ -10,16 +10,49 @@ Jobs
 
 {% block content %}
 <div class="container py-5">
-    <div class="col-lg-4 col-md-8 col-sm-12 mx-auto">
+    <div class="col-lg-12 col-md-8 col-sm-12 mx-auto">
         <form action="">
-            <input class="form-control rounded-pill"
+            <input class="form-control border-0 border-bottom rounded-0"
                 type="text"
                 name="q"
-                autofocus>
+                placeholder="Search for work"
+                >
         </form>
     </div>
-    <div class="container py-5">
-        <div class=" col-lg-6 col-md-4 col-sm-12 mx-auto">
+<br>
+    <div class="row py-5">
+        <div class="col-lg-4 shadow rounded-4 p-0 mx-auto" style="height: min-content;">
+                <div class="p-5 mx-auto text-center">
+                    <h4>{{request.user.profile}}</h4>
+                    <img class="rounded-circle"
+                        height="70"
+                        src="{{request.user.profile.image.url}}"
+                        alt="">
+                </div>
+                <div
+                    class="bg-secondary text-white py-3  px-5 text-center small rounded-top-0 rounded-4">
+                    <span>Experience: {{request.user.carer_profile.exp}}
+                        years</span><br>
+                    <span>Hourly rate:
+                        {{request.user.carer_profile.hourly_rate}} per
+                        hour</span>
+                    <hr>
+                    <span>
+                        {% for qual in request.user.carer_profile.qualifications.all %}
+                        <span style="font-size: 10px;"
+                            class="btn btn-sm btn-outline-light rounded-pill mb-1">{{qual}}</span>
+                        {% endfor %}
+                    </span><br>
+                    <span>
+                        {% for skill in request.user.carer_profile.skills.all %}
+                        <span style="font-size: 10px;"
+                            class="btn btn-sm btn-outline-light rounded-pill mb-1">{{skill}}</span>
+                        {% endfor %}
+                    </span>
+                </div>
+            </div>
+
+        <div class="col-lg-6 col-md-4 col-sm-12 mx-auto">
             <ul class="list-group list-group-flush">
                 {% for work in object_list %}
                 <a class="text-decoration-none fs-5 text-dark my-1 hover-list"
@@ -32,7 +65,8 @@ Jobs
                             <span
                                 title="skill level">{{work.skill_level|upper}}</span>
                             | <span
-                                title="hourly rate">${{work.hourly_rate|intcomma}} hr</span>
+                                title="hourly rate">${{work.hourly_rate|intcomma}}
+                                hr</span>
                             | <span title="created">
                                 {{work.created_at|naturaltime}}</span>
                         </p>

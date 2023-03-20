@@ -7,63 +7,74 @@
 
 
 {% block content %}
-<h1 class="text-center">{{request.user.profile}}</h1>
-<hr>
-<br>
-{% if request.user.is_authenticated %}
-{% if request.user.carer_profile %}
-{% else %}
-<div class="py-1">
-    <a href="{% url 'medical-care-profile-create' %}">Become a carer</a>
-</div>
-{% endif %}
-{% endif %}
-<div class="col-lg-8 mx-auto border p-5 rounded-4 shadow">
-    <form action=""
-        method="post">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-lg-6 mb-2">
+
+<form action=""
+    enctype="multipart/form-data"
+    method="post">
+    {% csrf_token %}
+    <div id='form-errors'>{{ form_errors }}</div>
+    <div class="col-lg-6 mx-auto">
+        <div class="border rounded-4 p-5">
+            <div class="row">
+                {{ form.image|as_crispy_field }}
+            </div>
+            <div class="row">
+                {{ form.title|as_crispy_field }}
+            </div>
+            <div class="row">
                 {{ form.first_name|as_crispy_field }}
             </div>
-
-            <div class="col-lg-6 mb-2">
+            <div class="row">
                 {{ form.last_name|as_crispy_field }}
             </div>
-        </div>
-        <div class="row">
-
-            <div class="col-lg-6 mb-2">
-                {{ form.middle_name|as_crispy_field }}
-            </div>
-            <div class="col-lg-4 mb-2">
-                {{ form.dob|as_crispy_field }}
-            </div>
-            <div class="col-lg-2 mb-2">
-                {{ form.gender|as_crispy_field }}
+            <div class="my-3 text-end">
+                <button class="btn btn-outline-dark rounded-pill"
+                    type="submit">Submit</button>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-4 mb-2">
+        <br>
+        <div class="border rounded-4 p-5">
+            <div class="row">
                 {{ form.phone|as_crispy_field }}
             </div>
-            <div class="col-lg-4 mb-2">
+            <div class="row">
                 {{ form.phone1|as_crispy_field }}
             </div>
-            <div class="col-lg-4 mb-2">
+            <div class="row">
+                {{ form.address|as_crispy_field }}
+            </div>
+            <div class="row">
+                {{ form.address1|as_crispy_field }}
+            </div>
+            <div class="row">
                 {{ form.location|as_crispy_field }}
             </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 mb-2">
-                {{ form.bio|as_crispy_field }}
+            <div class="row">
+                {{ form.postal_code|as_crispy_field }}
+            </div>
+            <div class="my-3 text-end">
+                <button class="btn btn-outline-dark rounded-pill"
+                    type="submit">Submit</button>
             </div>
         </div>
-        <div class="my-3 text-end">
-            <button class="btn btn-outline-dark px-5 shadow"
-                type="submit">Submit</button>
+        <br>
+        <div class="border rounded-4 p-5">
+            <div class="row">
+                {{ form.dob|as_crispy_field }}
+            </div>
+         
+            <div class="row">
+                {{ form.bio|as_crispy_field }}
+            </div>
+            <div class="row">
+                {{ form.gender|as_crispy_field }}
+            </div>
+            <div class="my-3 text-end">
+                <button class="btn btn-outline-dark rounded-pill"
+                    type="submit">Submit</button>
+            </div>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 
 {% endblock content %}

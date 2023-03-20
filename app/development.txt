@@ -2,4 +2,4 @@
 Faker==16.8.1
 black==23.1.0
 
--r production.txt
+-r requirements.txt

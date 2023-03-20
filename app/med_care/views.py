@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.messages.views import SuccessMessageMixin
 from django.shortcuts import render
 from django.urls import reverse_lazy
@@ -8,16 +9,17 @@ from django.views.generic import (
     TemplateView,
     UpdateView,
 )
+from users.models import User
 
 from .forms import MedicalCareProfileCreateForm, MedicalCareProfileUpdateForm
 from .models import MedicalCareProfile
-from users.models import User
 
-class MedicalCareProfileListView(ListView):
+
+class MedicalCareProfileListView(LoginRequiredMixin, ListView):
     model = MedicalCareProfile
 
 
-class MedicalCareProfileCreateView(SuccessMessageMixin, CreateView):
+class MedicalCareProfileCreateView(LoginRequiredMixin, SuccessMessageMixin, CreateView):
     model = MedicalCareProfile
     form_class = MedicalCareProfileCreateForm
     # fields = ['carer']
@@ -43,14 +45,12 @@ class MedicalCareProfileCreateView(SuccessMessageMixin, CreateView):
         return super(MedicalCareProfileCreateView, self).form_valid(form)
 
 
-
-class MedicalCareProfileDetailView(DetailView):
+class MedicalCareProfileDetailView(LoginRequiredMixin, DetailView):
     model = MedicalCareProfile
 
 
-class MedicalCareProfileUpdateView(SuccessMessageMixin, UpdateView):
+class MedicalCareProfileUpdateView(LoginRequiredMixin, SuccessMessageMixin, UpdateView):
     model = MedicalCareProfile
     form_class = MedicalCareProfileUpdateForm
     success_message = "Updated"
     template_name_suffix = "_update_form"
-

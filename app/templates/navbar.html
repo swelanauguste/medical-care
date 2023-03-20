@@ -19,7 +19,12 @@
                     type="button"
                     data-bs-toggle="dropdown"
                     aria-expanded="false">
-                    {{request.user.profile}}
+                    {% if request.user.profile.image %}
+                    <img class="rounded-pill"
+                        height="40"
+                        src="{{request.user.profile.image.url}}"
+                        alt="">
+                    {% endif %}
                 </a>
                 <ul class="dropdown-menu">
                     <li><a class="dropdown-item"

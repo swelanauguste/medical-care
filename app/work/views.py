@@ -1,12 +1,15 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Q
 from django.views.generic import DetailView, ListView
+from users.models import Location
 
 from .models import Work
 
 
 class WorkListView(LoginRequiredMixin, ListView):
     model = Work
+    
+    extra_context = {'locations': Location.objects.all()}
 
     def get_queryset(self):
         query = self.request.GET.get("q")
@@ -22,5 +25,5 @@ class WorkListView(LoginRequiredMixin, ListView):
             return Work.objects.all()
 
 
-class WorkDetailView(DetailView):
+class WorkDetailView(LoginRequiredMixin, DetailView):
     model = Work

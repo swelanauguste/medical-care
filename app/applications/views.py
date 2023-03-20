@@ -1,4 +1,6 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, reverse
 from django.views.generic import DetailView, ListView
@@ -8,11 +10,11 @@ from .forms import ApplicationCreateForm
 from .models import Application
 
 
-class ApplicationDetail(DetailView):
+class ApplicationDetail(LoginRequiredMixin, DetailView):
     model = Application
 
 
-class ApplicationListView(ListView):
+class ApplicationListView(LoginRequiredMixin, ListView):
     model = Application
     # ordering = ("-created_at",)
     # ordering = "created_at"
@@ -23,6 +25,7 @@ class ApplicationListView(ListView):
         ).order_by("-created_at")
 
 
+@login_required
 def create_application_view(request, work_id):
     job = Work.objects.get(pk=work_id)
     if request.method == "POST":
