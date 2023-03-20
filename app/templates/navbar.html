@@ -24,6 +24,8 @@
                         height="40"
                         src="{{request.user.profile.image.url}}"
                         alt="">
+                    {% else %}
+                    <span>{{request.user.profile}}</span>
                     {% endif %}
                 </a>
                 <ul class="dropdown-menu">
