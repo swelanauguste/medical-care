@@ -14,7 +14,7 @@
 python manage.py makemigrations
 python manage.py migrate
 # python manage.py flush --noinput
-python manage.py createsuperuser --username kingship --email kingship.kc@gmail.com --noinput
+# python manage.py createsuperuser --username kingship --email kingship.kc@gmail.com --noinput
 
 # python manage.py add_qualifications
 # python manage.py add_skills
@@ -22,6 +22,7 @@ python manage.py createsuperuser --username kingship --email kingship.kc@gmail.c
 # python manage.py add_tags
 # python manage.py add_locations
 # python manage.py add_work
+python manage.py add_title
 
 
 python manage.py collectstatic --noinput
