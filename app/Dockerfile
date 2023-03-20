@@ -15,8 +15,8 @@ RUN apk update
 
 # install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements/development.txt .
-COPY ./requirements/production.txt .
+COPY ./development.txt .
+COPY ./requirements.txt .
 RUN pip install -r development.txt
 
 # copy entrypoint.sh
