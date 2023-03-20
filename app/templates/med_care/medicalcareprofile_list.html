@@ -18,10 +18,9 @@ Jobs
                 autofocus>
         </form>
     </div>
-    <br>
     <ul class="list-group list-group-flush">
         {% for carer in object_list %}
-        <div class="col-lg-4 shadow rounded-4 p-0 mx-auto"
+        <div class="col-lg-4 shadow rounded-4 p-0 mx-auto my-3"
             style="height: min-content;">
             <div class="p-5 mx-auto text-center">
                 <h4>{{carer.carer.profile}}</h4>
@@ -59,7 +58,6 @@ Jobs
         {% endfor %}
     </ul>
 </div>
-<br>
 
 
 {% endblock content %}
