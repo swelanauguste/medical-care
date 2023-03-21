@@ -15,44 +15,48 @@ Jobs
             <input class="form-control border-0 border-bottom rounded-0"
                 type="text"
                 name="q"
-                placeholder="Search for work"
-                >
+                placeholder="Search for work">
         </form>
     </div>
-<br>
+    <br>
     <div class="row py-5">
-        <div class="col-lg-4 shadow rounded-4 p-0 mx-auto" style="height: min-content;">
-                <div class="p-5 mx-auto text-center">
-                    <h4>{{request.user.profile}}</h4>
-                    {% if request.user.profile.image %}
-                    <img class="rounded-circle"
+        <div class="col-lg-4 shadow rounded-4 p-0 mx-auto"
+            style="height: min-content;">
+            <div class="p-5 mx-auto text-center">
+                <h4>{{request.user.profile}}</h4>
+                {% if request.user.profile.image %}
+                <img class="rounded-circle"
                     height="70"
                     src="{{request.user.profile.image.url}}"
                     alt="">
-                    {% endif %}
-                </div>
-                <div
-                    class="bg-secondary text-white py-3  px-5 text-center small rounded-top-0 rounded-4">
-                    <span>Experience: {{request.user.carer_profile.exp}}
-                        years</span><br>
-                    <span>Hourly rate:
-                        {{request.user.carer_profile.hourly_rate}} per
-                        hour</span>
-                    <hr>
-                    <span>
-                        {% for qual in request.user.carer_profile.qualifications.all %}
-                        <span style="font-size: 10px;"
-                            class="btn btn-sm btn-outline-light rounded-pill mb-1">{{qual}}</span>
-                        {% endfor %}
-                    </span><br>
-                    <span>
-                        {% for skill in request.user.carer_profile.skills.all %}
-                        <span style="font-size: 10px;"
-                            class="btn btn-sm btn-outline-light rounded-pill mb-1">{{skill}}</span>
-                        {% endfor %}
-                    </span>
-                </div>
+                {% else %}
+                <img src=""
+                    alt="">
+                {% endif %}
             </div>
+            <div
+                class="bg-secondary text-white py-3  px-5 text-center small rounded-top-0 rounded-4">
+                <span>Experience: {{request.user.carer_profile.exp}}
+                    years</span><br>
+                <span>Hourly rate:
+                    {{request.user.carer_profile.hourly_rate}} per
+                    hour</span>
+                <hr>
+                <span>
+                    {% for qual in
+                    request.user.carer_profile.qualifications.all %}
+                    <span style="font-size: 10px;"
+                        class="btn btn-sm btn-outline-light rounded-pill mb-1">{{qual}}</span>
+                    {% endfor %}
+                </span><br>
+                <span>
+                    {% for skill in request.user.carer_profile.skills.all %}
+                    <span style="font-size: 10px;"
+                        class="btn btn-sm btn-outline-light rounded-pill mb-1">{{skill}}</span>
+                    {% endfor %}
+                </span>
+            </div>
+        </div>
 
         <div class="col-lg-6 col-md-4 col-sm-12 mx-auto">
             <ul class="list-group list-group-flush">
