@@ -84,6 +84,8 @@ class Profile(models.Model):
             with Image.open(self.image.path) as img:
                 # Get the size of the image
                 width, height = img.size
+                if height >= width:
+                    img.rotate(90)
 
                 # Find the smallest dimension
                 smallest_dim = min(width, height)
@@ -99,7 +101,6 @@ class Profile(models.Model):
 
                 # Resize the image to 500x500 pixels
                 resized_img = cropped_img.resize((500, 500))
-
                 # Save the resized image back to the same path
                 resized_img.save(self.image.path)
 
