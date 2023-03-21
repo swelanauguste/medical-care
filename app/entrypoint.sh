@@ -22,7 +22,7 @@ python manage.py migrate
 # python manage.py add_tags
 # python manage.py add_locations
 # python manage.py add_work
-python manage.py add_titles
+# python manage.py add_titles
 
 
 python manage.py collectstatic --noinput
