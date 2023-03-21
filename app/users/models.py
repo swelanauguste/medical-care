@@ -47,7 +47,12 @@ class Profile(models.Model):
         null=True,
         blank=True,
     )
-    image = models.ImageField(blank=True, null=True, upload_to="profile_photos")
+    image = models.ImageField(
+        blank=True,
+        null=True,
+        upload_to="profile_photos",
+        default="default-avatarpng.png",
+    )
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255, blank=True)
     slug = models.SlugField(max_length=255, blank=True)
@@ -74,28 +79,29 @@ class Profile(models.Model):
             self.slug = slugify(self.uid)
         super(Profile, self).save(*args, **kwargs)
 
-       # Open the image using Pillow
-        with Image.open(self.image.path) as img:
-            # Get the size of the image
-            width, height = img.size
+        # Open the image using Pillow
+        if self.image:
+            with Image.open(self.image.path) as img:
+                # Get the size of the image
+                width, height = img.size
 
-            # Find the smallest dimension
-            smallest_dim = min(width, height)
+                # Find the smallest dimension
+                smallest_dim = min(width, height)
 
-            # Calculate the box to crop the image to
-            left = (width - smallest_dim) / 2
-            top = (height - smallest_dim) / 2
-            right = (width + smallest_dim) / 2
-            bottom = (height + smallest_dim) / 2
+                # Calculate the box to crop the image to
+                left = (width - smallest_dim) / 2
+                top = (height - smallest_dim) / 2
+                right = (width + smallest_dim) / 2
+                bottom = (height + smallest_dim) / 2
 
-            # Crop the image
-            cropped_img = img.crop((left, top, right, bottom))
+                # Crop the image
+                cropped_img = img.crop((left, top, right, bottom))
 
-            # Resize the image to 500x500 pixels
-            resized_img = cropped_img.resize((500, 500))
+                # Resize the image to 500x500 pixels
+                resized_img = cropped_img.resize((500, 500))
 
-            # Save the resized image back to the same path
-            resized_img.save(self.image.path)
+                # Save the resized image back to the same path
+                resized_img.save(self.image.path)
 
         super().save(*args, **kwargs)
 

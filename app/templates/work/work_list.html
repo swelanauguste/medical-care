@@ -43,8 +43,7 @@ Jobs
                     hour</span>
                 <hr>
                 <span>
-                    {% for qual in
-                    request.user.carer_profile.qualifications.all %}
+                    {% for qual in request.user.carer_profile.qualifications.all %}
                     <span style="font-size: 10px;"
                         class="btn btn-sm btn-outline-light rounded-pill mb-1">{{qual}}</span>
                     {% endfor %}
