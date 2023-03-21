@@ -3,6 +3,8 @@ from django.forms import CheckboxSelectMultiple, NumberInput, Select, TextInput
 
 from .models import MedicalCareProfile
 
+no_border = "border-0 border-bottom rounded-0"
+
 
 class MedicalCareProfileCreateForm(forms.ModelForm):
     class Meta:
@@ -16,7 +18,7 @@ class MedicalCareProfileCreateForm(forms.ModelForm):
             "skills": CheckboxSelectMultiple(),
             "exp": TextInput(
                 attrs={
-                    "class": "rounded-pill shadow",
+                    "class": no_border,
                     "type": "text",
                     "inputmode": "numeric",
                     "pattern": "[0-9]",
@@ -24,7 +26,7 @@ class MedicalCareProfileCreateForm(forms.ModelForm):
             ),
             "hourly_rate": TextInput(
                 attrs={
-                    "class": "rounded-pill shadow",
+                    "class": no_border,
                 }
             ),
         }
@@ -41,7 +43,7 @@ class MedicalCareProfileUpdateForm(forms.ModelForm):
         widgets = {
             "exp": TextInput(
                 attrs={
-                    "class": "rounded-pill shadow",
+                    "class": no_border,
                     "inputmode": "numeric",
                     "type": "text",
                     "pattern": "[0-9]+",
@@ -51,7 +53,7 @@ class MedicalCareProfileUpdateForm(forms.ModelForm):
             "skills": CheckboxSelectMultiple(),
             "hourly_rate": TextInput(
                 attrs={
-                    "class": "rounded-pill shadow",
+                    "class": no_border,
                 }
             ),
         }
