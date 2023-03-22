@@ -104,8 +104,6 @@ class Profile(models.Model):
                 # Save the resized image back to the same path
                 resized_img.save(self.image.path)
 
-        super().save(*args, **kwargs)
-
     def get_absolute_url(self):
         return reverse("profile", kwargs={"slug": self.slug})
 

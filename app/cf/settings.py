@@ -179,17 +179,15 @@ LOGIN_URL = "/accounts/login/"
 LOGOUT_URL = "/accounts/login/"
 
 
-REQUEST_IGNORE_PATHS = (
-    r'^admin/',
-)
+REQUEST_IGNORE_PATHS = (r"^admin/",)
 
 REQUEST_PLUGINS = (
-    'request.plugins.TrafficInformation',
-    'request.plugins.LatestRequests',
-    'request.plugins.TopPaths',
-    'request.plugins.TopErrorPaths',
-    'request.plugins.TopReferrers',
-    'request.plugins.TopSearchPhrases',
-    'request.plugins.TopBrowsers',
-    'request.plugins.ActiveUsers'
+    "request.plugins.TrafficInformation",
+    "request.plugins.LatestRequests",
+    "request.plugins.TopPaths",
+    "request.plugins.TopErrorPaths",
+    "request.plugins.TopReferrers",
+    "request.plugins.TopSearchPhrases",
+    "request.plugins.TopBrowsers",
+    "request.plugins.ActiveUsers",
 )
