@@ -7,9 +7,16 @@
 
 
 {% block content %}
+
+{% if request.user.carer_profile %}
+
+{% else %}
 <div class="container my-3">
     <a class="btn btn-sm btn-outline-dark rounded-pill" href="{% url 'medical-care-profile-create' %}">Become a carer</a>
 </div>
+{% endif %}
+    
+
 
 <form action=""
     enctype="multipart/form-data"

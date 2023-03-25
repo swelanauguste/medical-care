@@ -20,9 +20,9 @@ services:
   #   volumes:
   #     - postgres_data:/var/lib/postgresql/data/
   #   environment:
-  #     - POSTGRES_USER=notices
-  #     - POSTGRES_PASSWORD=notices
-  #     - POSTGRES_DB=notices
+  #     - POSTGRES_USER=williams
+  #     - POSTGRES_PASSWORD=williams
+  #     - POSTGRES_DB=williams
   #   restart: always
 
 volumes:

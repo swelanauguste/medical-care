@@ -18,7 +18,7 @@ class Command(BaseCommand):
             Work.objects.get_or_create(
                 title=fake.company(),
                 description=fake.paragraph(nb_sentences=7),
-                posted_by=User.objects.get(pk=1),
+                posted_by=User.objects.get(pk=User.objects.first().pk),
                 skill_level=SkillLevel.objects.get(pk=random.randint(1, 4)),
                 hourly_rate=random.randint(7, 35),
                 location=Location.objects.get(pk=random.randint(1, Location.objects.count())),
